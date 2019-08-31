@@ -15,18 +15,18 @@ router.post('/addEntry', function(req, res, next) {
         angel: req.body.angel
     });
 
-    Tmk.addEntry(newEntry, function(err, user){
+    Tmk.addEntry(newEntry, function(err, entry){
         if(err) {
             res.json({success: false, msg: 'Failed'});
         } else {
-            res.json({success: true, msg: 'Success'}); 
+            res.json(entry); 
         }
     });
 });
 
 router.get('/getEntries', (req, res) => {
     Tmk.find({}, null, null, function(err, result) {
-        res.json({data: result});
+        res.json(result);
     });
 });
 
